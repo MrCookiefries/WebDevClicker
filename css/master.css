@@ -1,0 +1,16 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+}
+.upgrades {
+  display: none;
+}
