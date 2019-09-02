@@ -74,7 +74,7 @@ $(document).ready(() => {
   }, 1000)
 
   $(".menu").children().eq(1).on('click', () => {
-    $('.upgrades').show();
+    $('.upgrades').toggle();
   })
 
   $(".click").on('click', () => {
