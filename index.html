@@ -16,90 +16,121 @@
     </header>
     <main>
       <section class="shop">
-        <section class="upgrades">
+        <section class="upgrades" style="display: none;">
           <div class="scavenger">
             <h2>Scavenger</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.scavenger);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="miner">
             <h2>Miner</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.miner);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="researcher">
             <h2>Researcher</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.researcher);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="farmer">
             <h2>Farmer</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.farmer);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="worker">
             <h2>Worker</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.worker);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="learner">
             <h2>Learner</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.learner);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="designer">
             <h2>Designer</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.designer);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="copier">
             <h2>Copier</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.copier);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="developer">
             <h2>Developer</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.developer);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="factory">
             <h2>Factory</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.factory);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="hacker">
             <h2>Hacker</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.hacker);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="duplicator">
             <h2>Duplicator</h2>
-            <button type="button" class="buy">Buy 1</button>
+            <button type="button" class="buy" onclick="buyUpgrade(upgrades.duplicator);">Buy 1</button>
             <p><b>Cost: </b><span class="cost"></span></p>
             <p><b>Owned: </b><span class="owned"></span></p>
             <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+          </div>
+        </section>
+        <section class="powerups" style="display: none;">
+          <div class="clicker">
+            <h2>Clicker</h2>
+            <button type="button" name="buy" onclick="buyPowerup(powerups.clicker);">Purchase</button>
+            <p><b>Cost: </b><span class="cost"></span></p>
+            <p><b>Level: </b><span class="level"></span></p>
+            <p><b>Gain (Click Value): </b><span class="gain"></span></p>
+          </div>
+          <div class="double-click">
+            <h2>Double Click</h2>
+            <button type="button" name="buy" onclick="buyPowerup(powerups.doubleClick);">Purchase</button>
+            <p><b>Cost: </b><span class="cost"></span></p>
+            <p><b>Purchased: </b><span class="purchased"></span></p>
+            <p><b>Gain: </b><span class="gain"></span></p>
+            <p><b>Duration: </b><span class="duration"></span></p>
+            <progress value="0" max="300000"></progress>
+            <br>
+            <button type="button" name="use" onclick="usePowerup(powerups.doubleClick);">Activate</button>
+          </div>
+          <div class="double-xp">
+            <h2>Double XP</h2>
+            <button type="button" name="buy" onclick="buyPowerup(powerups.doubleXp);">Purchase</button>
+            <p><b>Cost: </b><span class="cost"></span></p>
+            <p><b>Purchased: </b><span class="purchased"></span></p>
+            <p><b>Gain: </b><span class="gain"></span></p>
+            <p><b>Duration: </b><span class="duration"></span></p>
+            <progress value="0" max="180000"></progress>
+            <br>
+            <button type="button" name="use" onclick="usePowerup(powerups.doubleXp);">Activate</button>
           </div>
         </section>
       </section>

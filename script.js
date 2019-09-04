@@ -100,7 +100,38 @@ let upgrades = {
     }
   }
 }
-
+let powerups = {
+  clicker: {
+    cost: 500,
+    gain: 5,
+    bought: 0,
+    getPrice() {
+      return calcCost(this.bought, this.cost);
+    }
+  },
+  doubleClick: {
+    cost: 10000,
+    gain: "Click XP x2",
+    canUse: false,
+    duration: 10000,
+    recharge: 300000,
+    purchased: false,
+    getPrice() {
+      return calcCost(0, this.cost);
+    }
+  },
+  doubleXp: {
+    cost: 1000000,
+    gain: "XP Per Second x2",
+    duration: 5000,
+    canUse: false,
+    purchased: false,
+    recharge: 180000,
+    getPrice() {
+      return calcCost(0, this.cost);
+    }
+  }
+}
 // Save Session
 if (localStorage.xp) {
   xp = JSON.parse(localStorage.getItem('xp'));
@@ -114,7 +145,9 @@ if (localStorage.click) {
 if (localStorage.upgrades) {
   upgrades = JSON.parse(localStorage.getItem('upgrades'));
 }
-
+if (localStorage.powerups) {
+  powerups = JSON.parse(localStorage.getItem('powerups'));
+}
 // Update Functions
 function displayCosts() {
   $(".scavenger .cost").html(roundPrice(upgrades.scavenger.getPrice()));
@@ -132,15 +165,72 @@ function displayCosts() {
 }
 
 function displayOwned() {
-  $(".scavenger .owned").html(upgrades.scavenger.bought);
-  $(".miner .owned").html(upgrades.miner.bought);
-  $(".researcher .owned").html(upgrades.researcher.bought);
+  $(".scavenger .owned").html(roundPrice(upgrades.scavenger.bought));
+  $(".miner .owned").html(roundPrice(upgrades.miner.bought));
+  $(".researcher .owned").html(roundPrice(upgrades.researcher.bought));
+  $(".farmer .owned").html(roundPrice(upgrades.farmer.bought));
+  $(".worker .owned").html(roundPrice(upgrades.worker.bought));
+  $(".learner .owned").html(roundPrice(upgrades.learner.bought));
+  $(".designer .owned").html(roundPrice(upgrades.designer.bought));
+  $(".copier .owned").html(roundPrice(upgrades.copier.bought));
+  $(".developer .owned").html(roundPrice(upgrades.developer.bought));
+  $(".factory .owned").html(roundPrice(upgrades.factory.bought));
+  $(".hacker .owned").html(roundPrice(upgrades.hacker.bought));
+  $(".duplicator .owned").html(roundPrice(upgrades.duplicator.bought));
 }
 
 function displayGain() {
-  $(".scavenger .gain").html(upgrades.scavenger.gain);
-  $(".miner .gain").html(upgrades.miner.gain);
-  $(".researcher .gain").html(upgrades.researcher.gain);
+  $(".scavenger .gain").html(roundPrice(upgrades.scavenger.gain));
+  $(".miner .gain").html(roundPrice(upgrades.miner.gain));
+  $(".researcher .gain").html(roundPrice(upgrades.researcher.gain));
+  $(".farmer .gain").html(roundPrice(upgrades.farmer.gain));
+  $(".worker .gain").html(roundPrice(upgrades.worker.gain));
+  $(".learner .gain").html(roundPrice(upgrades.learner.gain));
+  $(".designer .gain").html(roundPrice(upgrades.designer.gain));
+  $(".copier .gain").html(roundPrice(upgrades.copier.gain));
+  $(".developer .gain").html(roundPrice(upgrades.developer.gain));
+  $(".factory .gain").html(roundPrice(upgrades.factory.gain));
+  $(".hacker .gain").html(roundPrice(upgrades.hacker.gain));
+  $(".duplicator .gain").html(roundPrice(upgrades.duplicator.gain));
+}
+
+function displayPowerups() {
+  $('.clicker .cost').html(roundPrice(powerups.clicker.getPrice()));
+  $('.double-click .cost').html(roundPrice(powerups.doubleClick.getPrice()));
+  $('.double-xp .cost').html(roundPrice(powerups.doubleXp.getPrice()));
+  $('.clicker .level').html(roundPrice(powerups.clicker.bought));
+  $('.clicker .gain').html(roundPrice(powerups.clicker.gain));
+  $('.double-click .gain').html(powerups.doubleClick.gain);
+  $('.double-xp .gain').html(powerups.doubleXp.gain);
+  $('.double-click .purchased').html((powerups.doubleClick.purchased ? "Yep" : "Nope"));
+  $('.double-xp .purchased').html((powerups.doubleXp.purchased ? "Yep" : "Nope"));
+}
+
+function buyUpgrade(upgrade) {
+  let cost = upgrade.getPrice();
+  if (cost > xp) {
+    return;
+  } else {
+    xp -= cost;
+    upgrade.bought++;
+    xpPs += upgrade.gain;
+    displayCosts();
+    displayOwned();
+  }
+}
+
+function buyPowerup(powerup) {
+  let cost = powerup.getPrice();
+  if (cost > xp) {
+    return;
+  } else if (powerup.purchased === true) {
+    return;
+  } else {
+    xp -= cost;
+    powerup.purchased = true;
+    progressBars();
+    displayPowerups();
+  }
 }
 
 function calcCost(purchased, baseCost) {
@@ -247,28 +337,99 @@ function roundPrice(num) {
   return num;
 }
 
+function usePowerup(powerup) {
+  let origClick = click;
+  let origxpPs = xpPs;
+  if (powerup.canUse == false) {
+    return;
+  } else {
+    powerup.canUse = false;
+    if (powerup == powerups.doubleClick) {
+      $(".double-click progress").val(0);
+      click = click * 2;
+    } else if (powerup == powerups.doubleXp) {
+      $(".double-xp progress").val(0);
+      xpPs = xpPs * 2;
+    }
+    setInterval(() => {
+      if (powerup == powerups.doubleClick) {
+        click = origClick;
+      } else if (powerup == powerups.doubleXp) {
+        xpPs = origxpPs;
+      }
+      progressBars();
+    }, powerup.duration)
+  }
+}
+
+function progressBars() {
+  if (powerups.doubleClick.purchased === true && powerups.doubleClick.canUse === false) {
+    let dbClickVal = $('.double-click progress').val();
+    let dbClickId = setInterval(() => {
+      dbClickVal = $('.double-click progress').val();
+      if ($(".double-click progress").attr('max') <= dbClickVal) {
+        clearInterval(dbClickId);
+        powerups.doubleClick.canUse = true;
+      } else {
+        dbClickVal += 1000;
+        $(".double-click progress").val(dbClickVal);
+      }
+    }, 1000)
+  }
+  if (powerups.doubleXp.purchased === true && powerups.doubleXp.canUse === false) {
+    let dbXpVal = $('.double-xp progress').val();
+    let dbXpId = setInterval(() => {
+      dbXpVal = $('.double-xp progress').val();
+      if ($(".double-xp progress").attr('max') <= dbXpVal) {
+        clearInterval(dbXpId);
+        powerups.doubleXp.canUse = true;
+      } else {
+        dbXpVal += 1000;
+        $(".double-xp progress").val(dbXpVal);
+      }
+    }, 1000)
+  }
+  if (powerups.halveRecharge.purchased === true && powerups.halveRecharge.canUse === false) {
+    let halveRchVal = $('.halve-recharge progress').val();
+    let halveRchId = setInterval(() => {
+      halveRchVal = $('.halve-recharge progress').val();
+      if ($(".halve-recharge progress").attr('max') <= halveRchVal) {
+        clearInterval(halveRchId);
+        powerups.halveRecharge.canUse = true;
+      } else {
+        halveRchVal += 1000;
+        $(".halve-recharge progress").val(halveRchVal);
+      }
+    }, 1000)
+  }
+}
 // DOM Events
 $(document).ready(() => {
-
+  // Update Timer
   setInterval(() => {
     xp += xpPs;
     $('.xp').html(xp);
   }, 1000)
-
+  // Local Storage Saves
   $(".save").on('click', () => {
     localStorage.setItem('xp', JSON.stringify(xp));
     localStorage.setItem('xpPs', JSON.stringify(xpPs));
     localStorage.setItem('click', JSON.stringify(click));
     localStorage.setItem('upgrades', JSON.stringify(upgrades));
+    localStorage.setItem('powerups', JSON.stringify(powerups));
   })
-
+  // Menu Navigation
   $(".menu").children().eq(1).on('click', () => {
     $('.upgrades').toggle();
     displayCosts();
     displayOwned();
     displayGain();
   })
-
+  $(".menu").children().eq(2).on('click', () => {
+    $('.powerups').toggle();
+    displayPowerups();
+  })
+  // Click Event Handler
   $(".click").on('click', () => {
     xp += click;
     $('.xp').html(xp);
