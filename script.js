@@ -204,6 +204,8 @@ function displayPowerups() {
   $('.double-xp .gain').html(powerups.doubleXp.gain);
   $('.double-click .purchased').html((powerups.doubleClick.purchased ? "Yep" : "Nope"));
   $('.double-xp .purchased').html((powerups.doubleXp.purchased ? "Yep" : "Nope"));
+  $('.double-click .duration').html("10 Seconds");
+  $('.double-xp .duration').html("5 Seconds");
 }
 
 function buyUpgrade(upgrade) {
@@ -403,6 +405,24 @@ function progressBars() {
     }, 1000)
   }
 }
+// Style Shop
+let style = document.getElementById('style').sheet;
+style.insertRule(".inline {display: inline-block;}");
+style.insertRule(".padding {padding: 10px;}");
+style.insertRule(".margin {margin: 10px;}");
+style.insertRule(".block {display: block;}");
+style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
+style.insertRule(".sticky {position: sticky; top: 0;}");
+style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
+style.insertRule(".background {background: var(--background);}");
+style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
+style.insertRule(".round {border-radius: 8px;}");
+style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
+style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
+style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
+style.insertRule(".border {border: 2px solid var(--black);}");
+style.insertRule(".hover-pointer:hover {cursor: pointer;}");
+
 // DOM Events
 $(document).ready(() => {
   // Update Timer
@@ -418,15 +438,24 @@ $(document).ready(() => {
     localStorage.setItem('upgrades', JSON.stringify(upgrades));
     localStorage.setItem('powerups', JSON.stringify(powerups));
   })
+  // Local Storage Clear Saves
+  $('.clear').on('click', () => {
+    localStorage.clear();
+  })
   // Menu Navigation
+  $(".menu").children().eq(0).on('click', () => {
+    // Style Shop Purchases
+  })
   $(".menu").children().eq(1).on('click', () => {
     $('.upgrades').toggle();
+    $('.powerups').hide();
     displayCosts();
     displayOwned();
     displayGain();
   })
   $(".menu").children().eq(2).on('click', () => {
     $('.powerups').toggle();
+    $('.upgrades').hide();
     displayPowerups();
   })
   // Click Event Handler
@@ -434,5 +463,4 @@ $(document).ready(() => {
     xp += click;
     $('.xp').html(xp);
   })
-
 })

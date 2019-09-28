@@ -4,143 +4,146 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
-    <link rel="stylesheet" href="./css/master.css" type="text/css">
+    <link id="style" rel="stylesheet" href="./css/master.css" type="text/css">
   </head>
-  <body>
-    <header>
+  <body class="background">
+    <header class="sticky dark">
       <ul class="menu">
-        <li>Styles</li>
-        <li>Upgrades</li>
-        <li>Powerups</li>
+        <li class="inline padding hover-pointer">Styles</li>
+        <li class="hover-pointer inline padding">Upgrades</li>
+        <li class="hover-pointer inline padding">Powerups</li>
       </ul>
     </header>
     <main>
-      <section class="shop">
+      <section class="shop flex">
         <section class="upgrades" style="display: none;">
-          <div class="scavenger">
+          <div class="round light scavenger margin padding">
             <h2>Scavenger</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.scavenger);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.scavenger);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="miner">
+          <div class="round light miner padding margin">
             <h2>Miner</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.miner);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.miner);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="researcher">
+          <div class="round light margin researcher padding">
             <h2>Researcher</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.researcher);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.researcher);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="farmer">
+          <div class="round light margin farmer padding">
             <h2>Farmer</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.farmer);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.farmer);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="worker">
+          <div class="round light margin worker padding">
             <h2>Worker</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.worker);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.worker);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="learner">
+          <div class="round light margin learner padding">
             <h2>Learner</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.learner);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.learner);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="designer">
+          <div class="round light margin designer padding">
             <h2>Designer</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.designer);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.designer);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="copier">
+          <div class="round light margin copier padding">
             <h2>Copier</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.copier);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.copier);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="developer">
+          <div class="round light margin developer padding">
             <h2>Developer</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.developer);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.developer);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="factory">
+          <div class="round light margin factory padding">
             <h2>Factory</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.factory);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.factory);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="hacker">
+          <div class="round light margin hacker padding">
             <h2>Hacker</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.hacker);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.hacker);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
-          <div class="duplicator">
+          <div class="round light margin duplicator padding">
             <h2>Duplicator</h2>
-            <button type="button" class="buy" onclick="buyUpgrade(upgrades.duplicator);">Buy 1</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Owned: </b><span class="owned"></span></p>
-            <p><b>Gain (XP/PS): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.duplicator);">Buy 1</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
+            <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
         </section>
         <section class="powerups" style="display: none;">
-          <div class="clicker">
+          <div class="round light margin clicker padding">
             <h2>Clicker</h2>
-            <button type="button" name="buy" onclick="buyPowerup(powerups.clicker);">Purchase</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Level: </b><span class="level"></span></p>
-            <p><b>Gain (Click Value): </b><span class="gain"></span></p>
+            <button class="hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.clicker);">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Level: </b><span class="level"></span></p>
+            <p class="inline padding"><b>Gain (Click Value): </b><span class="gain"></span></p>
           </div>
-          <div class="double-click">
+          <div class="round light margin double-click padding">
             <h2>Double Click</h2>
-            <button type="button" name="buy" onclick="buyPowerup(powerups.doubleClick);">Purchase</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Purchased: </b><span class="purchased"></span></p>
-            <p><b>Gain: </b><span class="gain"></span></p>
-            <p><b>Duration: </b><span class="duration"></span></p>
-            <progress value="0" max="300000"></progress>
+            <button class="hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.doubleClick);">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Gain: </b><span class="gain"></span></p>
+            <p class="inline padding"><b>Duration: </b><span class="duration"></span></p>
+            <progress class="block margin" value="0" max="300000"></progress>
             <br>
-            <button type="button" name="use" onclick="usePowerup(powerups.doubleClick);">Activate</button>
+            <button class="hover-pointer border pink margin round padding" type="button" name="use" onclick="usePowerup(powerups.doubleClick);">Activate</button>
           </div>
-          <div class="double-xp">
+          <div class="round light margin double-xp padding">
             <h2>Double XP</h2>
-            <button type="button" name="buy" onclick="buyPowerup(powerups.doubleXp);">Purchase</button>
-            <p><b>Cost: </b><span class="cost"></span></p>
-            <p><b>Purchased: </b><span class="purchased"></span></p>
-            <p><b>Gain: </b><span class="gain"></span></p>
-            <p><b>Duration: </b><span class="duration"></span></p>
-            <progress value="0" max="180000"></progress>
+            <button class="hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.doubleXp);">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Gain: </b><span class="gain"></span></p>
+            <p class="inline padding"><b>Duration: </b><span class="duration"></span></p>
+            <progress class="block margin" value="0" max="180000"></progress>
             <br>
-            <button type="button" name="use" onclick="usePowerup(powerups.doubleXp);">Activate</button>
+            <button class="hover-pointer border pink round padding margin" type="button" name="use" onclick="usePowerup(powerups.doubleXp);">Activate</button>
           </div>
         </section>
       </section>
-      <section>
-        <h1>XP: <span class="xp">0</span></h1>
-        <button type="button" class="click">Click Me!</button>
+      <section class="margin flex">
+        <h1 class="padding">XP: <span class="xp">0</span></h1>
+        <button type="button" class="hover-pointer border purple padding round click block margin">Click Me!</button>
       </section>
     </main>
-    <footer>
-      <button type="button" class="save">Save</button>
+    <footer class="flex">
+      <section class="margin">
+        <button type="button" class="hover-pointer border round padding margin save inline">Save</button>
+        <button type="button" class="hover-pointer border round padding margin clear inline">Clear Save</button>
+      </section>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="./script.js" charset="utf-8"></script>
