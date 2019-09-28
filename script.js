@@ -1,167 +1,139 @@
 // Game Data
-let xp = 0;
-let xpPs = 0;
-let click = 1;
-let upgrades = {
-  scavenger: {
-    cost: 30,
-    gain: 1,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  miner: {
-    cost: 360,
-    gain: 5,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  researcher: {
-    cost: 4320,
-    gain: 25,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  farmer: {
-    cost: 51840,
-    gain: 125,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  worker: {
-    cost: 622080,
-    gain: 625,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  learner: {
-    cost: 7464000,
-    gain: 3125,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  designer: {
-    cost: 89579000,
-    gain: 15625,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  copier: {
-    cost: 1074000000,
-    gain: 78125,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  developer: {
-    cost: 12899000000,
-    gain: 390625,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  factory: {
-    cost: 154793000000,
-    gain: 1953000,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  hacker: {
-    cost: 1857000000000,
-    gain: 9765000,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  duplicator: {
-    cost: 22290000000000,
-    gain: 48828000,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  }
+let storage = window.localStorage;
+let xp;
+if (storage.xp !== undefined) {
+  xp = JSON.parse(storage.getItem('xp'));
+} else {
+  xp = 0;
 }
-let powerups = {
-  clicker: {
-    cost: 500,
-    gain: 5,
-    bought: 0,
-    getPrice() {
-      return calcCost(this.bought, this.cost);
-    }
-  },
-  doubleClick: {
-    cost: 10000,
-    gain: "Click XP x2",
-    canUse: false,
-    duration: 10000,
-    recharge: 300000,
-    purchased: false,
-    getPrice() {
-      return calcCost(0, this.cost);
-    }
-  },
-  doubleXp: {
-    cost: 1000000,
-    gain: "XP Per Second x2",
-    duration: 5000,
-    canUse: false,
-    purchased: false,
-    recharge: 180000,
-    getPrice() {
-      return calcCost(0, this.cost);
-    }
-  }
+let xpPs;
+if (storage.xpPs !== undefined) {
+  xpPs = JSON.parse(storage.getItem('xpPs'));
+} else {
+  xpPs = 0;
 }
-// Save Session
-if (localStorage.xp) {
-  xp = JSON.parse(localStorage.getItem('xp'));
+let click;
+if (storage.click !== undefined) {
+  click = JSON.parse(storage.getItem('click'));
+} else {
+  click = 1;
 }
-if (localStorage.xpPs) {
-  xpPs = JSON.parse(localStorage.getItem('xpPs'));
-}
-if (localStorage.click) {
-  click = JSON.parse(localStorage.getItem('click'));
-}
-if (localStorage.upgrades) {
+let upgrades;
+if (localStorage.upgrades !== undefined) {
   upgrades = JSON.parse(localStorage.getItem('upgrades'));
+} else {
+  upgrades = {
+    scavenger: {
+      cost: 30,
+      gain: 1,
+      bought: 0
+    },
+    miner: {
+      cost: 360,
+      gain: 5,
+      bought: 0
+    },
+    researcher: {
+      cost: 4320,
+      gain: 25,
+      bought: 0
+    },
+    farmer: {
+      cost: 51840,
+      gain: 125,
+      bought: 0
+    },
+    worker: {
+      cost: 622080,
+      gain: 625,
+      bought: 0
+    },
+    learner: {
+      cost: 7464000,
+      gain: 3125,
+      bought: 0
+    },
+    designer: {
+      cost: 89579000,
+      gain: 15625,
+      bought: 0
+    },
+    copier: {
+      cost: 1074000000,
+      gain: 78125,
+      bought: 0
+    },
+    developer: {
+      cost: 12899000000,
+      gain: 390625,
+      bought: 0
+    },
+    factory: {
+      cost: 154793000000,
+      gain: 1953000,
+      bought: 0
+    },
+    hacker: {
+      cost: 1857000000000,
+      gain: 9765000,
+      bought: 0
+    },
+    duplicator: {
+      cost: 22290000000000,
+      gain: 48828000,
+      bought: 0
+    }
+  }
 }
-if (localStorage.powerups) {
+let powerups;
+if (localStorage.powerups !== undefined) {
   powerups = JSON.parse(localStorage.getItem('powerups'));
+} else {
+  powerups = {
+    clicker: {
+      cost: 500,
+      gain: 5,
+      bought: 0,
+      purchased: false
+    },
+    doubleClick: {
+      cost: 10000,
+      gain: "Click XP x2",
+      canUse: false,
+      duration: 10000,
+      recharge: 300000,
+      bought: 0,
+      purchased: false
+    },
+    doubleXp: {
+      cost: 1000000,
+      gain: "XP Per Second x2",
+      duration: 5000,
+      canUse: false,
+      bought: 0,
+      purchased: false,
+      recharge: 180000
+    }
+  }
+}
+
+function getPrice(object) {
+  return calcCost(object.bought, object.cost);
 }
 // Update Functions
 function displayCosts() {
-  $(".scavenger .cost").html(roundPrice(upgrades.scavenger.getPrice()));
-  $(".miner .cost").html(roundPrice(upgrades.miner.getPrice()));
-  $(".researcher .cost").html(roundPrice(upgrades.researcher.getPrice()));
-  $(".farmer .cost").html(roundPrice(upgrades.farmer.getPrice()));
-  $(".worker .cost").html(roundPrice(upgrades.worker.getPrice()));
-  $(".learner .cost").html(roundPrice(upgrades.learner.getPrice()));
-  $(".designer .cost").html(roundPrice(upgrades.designer.getPrice()));
-  $(".copier .cost").html(roundPrice(upgrades.copier.getPrice()));
-  $(".developer .cost").html(roundPrice(upgrades.developer.getPrice()));
-  $(".factory .cost").html(roundPrice(upgrades.factory.getPrice()));
-  $(".hacker .cost").html(roundPrice(upgrades.hacker.getPrice()));
-  $(".duplicator .cost").html(roundPrice(upgrades.duplicator.getPrice()));
+  $(".scavenger .cost").html(roundPrice(getPrice(upgrades.scavenger)));
+  $(".miner .cost").html(roundPrice(getPrice(upgrades.miner)));
+  $(".researcher .cost").html(roundPrice(getPrice(upgrades.researcher)));
+  $(".farmer .cost").html(roundPrice(getPrice(upgrades.farmer)));
+  $(".worker .cost").html(roundPrice(getPrice(upgrades.worker)));
+  $(".learner .cost").html(roundPrice(getPrice(upgrades.learner)));
+  $(".designer .cost").html(roundPrice(getPrice(upgrades.designer)));
+  $(".copier .cost").html(roundPrice(getPrice(upgrades.copier)));
+  $(".developer .cost").html(roundPrice(getPrice(upgrades.developer)));
+  $(".factory .cost").html(roundPrice(getPrice(upgrades.factory)));
+  $(".hacker .cost").html(roundPrice(getPrice(upgrades.hacker)));
+  $(".duplicator .cost").html(roundPrice(getPrice(upgrades.duplicator)));
 }
 
 function displayOwned() {
@@ -195,9 +167,9 @@ function displayGain() {
 }
 
 function displayPowerups() {
-  $('.clicker .cost').html(roundPrice(powerups.clicker.getPrice()));
-  $('.double-click .cost').html(roundPrice(powerups.doubleClick.getPrice()));
-  $('.double-xp .cost').html(roundPrice(powerups.doubleXp.getPrice()));
+  $('.clicker .cost').html(roundPrice(getPrice(powerups.clicker)));
+  $('.double-click .cost').html(roundPrice(getPrice(powerups.doubleClick)));
+  $('.double-xp .cost').html(roundPrice(getPrice(powerups.doubleXp)));
   $('.clicker .level').html(roundPrice(powerups.clicker.bought));
   $('.clicker .gain').html(roundPrice(powerups.clicker.gain));
   $('.double-click .gain').html(powerups.doubleClick.gain);
@@ -209,7 +181,7 @@ function displayPowerups() {
 }
 
 function buyUpgrade(upgrade) {
-  let cost = upgrade.getPrice();
+  let cost = getPrice(upgrade);
   if (cost > xp) {
     return;
   } else {
@@ -222,15 +194,21 @@ function buyUpgrade(upgrade) {
 }
 
 function buyPowerup(powerup) {
-  let cost = powerup.getPrice();
+  let cost = getPrice(powerup);
   if (cost > xp) {
     return;
   } else if (powerup.purchased === true) {
     return;
   } else {
     xp -= cost;
-    powerup.purchased = true;
-    progressBars();
+    if (powerup === powerups.clicker) {
+      powerup.bought++;
+      click += powerup.gain;
+      powerup.gain++;
+    } else {
+      powerup.purchased = true;
+      progressBars();
+    }
     displayPowerups();
   }
 }
@@ -391,19 +369,6 @@ function progressBars() {
       }
     }, 1000)
   }
-  if (powerups.halveRecharge.purchased === true && powerups.halveRecharge.canUse === false) {
-    let halveRchVal = $('.halve-recharge progress').val();
-    let halveRchId = setInterval(() => {
-      halveRchVal = $('.halve-recharge progress').val();
-      if ($(".halve-recharge progress").attr('max') <= halveRchVal) {
-        clearInterval(halveRchId);
-        powerups.halveRecharge.canUse = true;
-      } else {
-        halveRchVal += 1000;
-        $(".halve-recharge progress").val(halveRchVal);
-      }
-    }, 1000)
-  }
 }
 // Style Shop
 let style = document.getElementById('style').sheet;
@@ -428,7 +393,7 @@ $(document).ready(() => {
   // Update Timer
   setInterval(() => {
     xp += xpPs;
-    $('.xp').html(xp);
+    $('.xp').html(roundPrice(xp));
   }, 1000)
   // Local Storage Saves
   $(".save").on('click', () => {
@@ -461,6 +426,6 @@ $(document).ready(() => {
   // Click Event Handler
   $(".click").on('click', () => {
     xp += click;
-    $('.xp').html(xp);
+    $('.xp').html(roundPrice(xp));
   })
 })
