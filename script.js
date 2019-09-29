@@ -698,3 +698,6 @@ $(document).ready(() => {
     $('.xp').html(roundPrice(xp));
   })
 })
+window.onload = function() {
+  window.alert("Welcome to WebDev Clicker! The page looks plain now, but don't worry. Your goal is to buy all of the styles to decorate the page as you progress gaining tons of XP (the currency).");
+}
