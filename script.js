@@ -1,5 +1,6 @@
 // Game Data
 let storage = window.localStorage;
+let style = document.getElementById('style').sheet;
 let xp;
 if (storage.xp !== undefined) {
   xp = JSON.parse(storage.getItem('xp'));
@@ -116,6 +117,118 @@ if (localStorage.powerups !== undefined) {
     }
   }
 }
+let styles;
+if (localStorage.styles !== undefined) {
+  styles = JSON.parse(localStorage.getItem('styles'));
+} else {
+  styles = {
+    inline: {
+      cost: 10,
+      bought: 0,
+      purchased: false
+    },
+    padding: {
+      cost: 50,
+      bought: 0,
+      purchased: false
+    },
+    margin: {
+      cost: 100,
+      bought: 0,
+      purchased: false
+    },
+    block: {
+      cost: 500,
+      bought: 0,
+      purchased: false
+    },
+    flex: {
+      cost: 1000,
+      bought: 0,
+      purchased: false
+    },
+    sticky: {
+      cost: 5000,
+      bought: 0,
+      purchased: false
+    },
+    dark: {
+      cost: 10000,
+      bought: 0,
+      purchased: false
+    },
+    background: {
+      cost: 50000,
+      bought: 0,
+      purchased: false
+    },
+    light: {
+      cost: 100000,
+      bought: 0,
+      purchased: false
+    },
+    round: {
+      cost: 500000,
+      bought: 0,
+      purchased: false
+    },
+    blue: {
+      cost: 1000000,
+      bought: 0,
+      purchased: false
+    },
+    pink: {
+      cost: 5000000,
+      bought: 0,
+      purchased: false
+    },
+    purple: {
+      cost: 10000000,
+      bought: 0,
+      purchased: false
+    },
+    border: {
+      cost: 50000000,
+      bought: 0,
+      purchased: false
+    },
+    hoverPointer: {
+      cost: 100000000,
+      bought: 0,
+      purchased: false
+    },
+    heavy: {
+      cost: 500000000,
+      bought: 0,
+      purchased: false
+    },
+    large: {
+      cost: 1000000000,
+      bought: 0,
+      purchased: false
+    },
+    hoverShadow: {
+      cost: 5000000000,
+      bought: 0,
+      purchased: false
+    },
+    focus: {
+      cost: 10000000000,
+      bought: 0,
+      purchased: false
+    },
+    title: {
+      cost: 50000000000,
+      bought: 0,
+      purchased: false
+    },
+    text: {
+      cost: 100000000000,
+      bought: 0,
+      purchased: false
+    }
+  }
+}
 
 function getPrice(object) {
   return calcCost(object.bought, object.cost);
@@ -180,6 +293,51 @@ function displayPowerups() {
   $('.double-xp .duration').html("5 Seconds");
 }
 
+function displayStyles() {
+  $('.s-inline .cost').html(roundPrice(styles.inline.cost));
+  $('.s-padding .cost').html(roundPrice(styles.padding.cost));
+  $('.s-margin .cost').html(roundPrice(styles.margin.cost));
+  $('.s-block .cost').html(roundPrice(styles.block.cost));
+  $('.s-flex .cost').html(roundPrice(styles.flex.cost));
+  $('.s-sticky .cost').html(roundPrice(styles.sticky.cost));
+  $('.s-dark .cost').html(roundPrice(styles.dark.cost));
+  $('.s-background .cost').html(roundPrice(styles.background.cost));
+  $('.s-light .cost').html(roundPrice(styles.light.cost));
+  $('.s-round .cost').html(roundPrice(styles.round.cost));
+  $('.s-blue .cost').html(roundPrice(styles.blue.cost));
+  $('.s-pink .cost').html(roundPrice(styles.pink.cost));
+  $('.s-purple .cost').html(roundPrice(styles.purple.cost));
+  $('.s-border .cost').html(roundPrice(styles.border.cost));
+  $('.s-hover-pointer .cost').html(roundPrice(styles.hoverPointer.cost));
+  $('.s-heavy .cost').html(roundPrice(styles.heavy.cost));
+  $('.s-large .cost').html(roundPrice(styles.large.cost));
+  $('.s-hover-shadow .cost').html(roundPrice(styles.hoverShadow.cost));
+  $('.s-focus .cost').html(roundPrice(styles.focus.cost));
+  $('.s-title .cost').html(roundPrice(styles.title.cost));
+  $('.s-text .cost').html(roundPrice(styles.text.cost));
+  $('.s-inline .purchased').html((styles.inline.purchased ? "Yep" : "Nope"));
+  $('.s-padding .purchased').html((styles.padding.purchased ? "Yep" : "Nope"));
+  $('.s-margin .purchased').html((styles.margin.purchased ? "Yep" : "Nope"));
+  $('.s-block .purchased').html((styles.block.purchased ? "Yep" : "Nope"));
+  $('.s-flex .purchased').html((styles.flex.purchased ? "Yep" : "Nope"));
+  $('.s-sticky .purchased').html((styles.sticky.purchased ? "Yep" : "Nope"));
+  $('.s-dark .purchased').html((styles.dark.purchased ? "Yep" : "Nope"));
+  $('.s-background .purchased').html((styles.background.purchased ? "Yep" : "Nope"));
+  $('.s-light .purchased').html((styles.light.purchased ? "Yep" : "Nope"));
+  $('.s-round .purchased').html((styles.round.purchased ? "Yep" : "Nope"));
+  $('.s-blue .purchased').html((styles.blue.purchased ? "Yep" : "Nope"));
+  $('.s-pink .purchased').html((styles.pink.purchased ? "Yep" : "Nope"));
+  $('.s-purple .purchased').html((styles.purple.purchased ? "Yep" : "Nope"));
+  $('.s-border .purchased').html((styles.border.purchased ? "Yep" : "Nope"));
+  $('.s-hover-pointer .purchased').html((styles.hoverPointer.purchased ? "Yep" : "Nope"));
+  $('.s-heavy .purchased').html((styles.heavy.purchased ? "Yep" : "Nope"));
+  $('.s-large .purchased').html((styles.large.purchased ? "Yep" : "Nope"));
+  $('.s-hover-shadow .purchased').html((styles.hoverShadow.purchased ? "Yep" : "Nope"));
+  $('.s-focus .purchased').html((styles.focus.purchased ? "Yep" : "Nope"));
+  $('.s-title .purchased').html((styles.title.purchased ? "Yep" : "Nope"));
+  $('.s-text .purchased').html((styles.text.purchased ? "Yep" : "Nope"));
+}
+
 function buyUpgrade(upgrade) {
   let cost = getPrice(upgrade);
   if (cost > xp) {
@@ -211,6 +369,64 @@ function buyPowerup(powerup) {
     }
     displayPowerups();
   }
+}
+
+function buyStyle(styleObject) {
+  let cost = getPrice(styleObject);
+  if (styleObject.purchased) {
+    return;
+  } else {
+    if (xp > cost) {
+      styleObject.purchased = true;
+      xp -= cost;
+      if (styleObject == styles.inline) {
+        style.insertRule(".inline {display: inline-block;}");
+      } else if (styleObject == styles.padding) {
+        style.insertRule(".padding {padding: 10px;}");
+      } else if (styleObject == styles.margin) {
+        style.insertRule(".margin {margin: 10px;}");
+      } else if (styleObject == styles.block) {
+        style.insertRule(".block {display: block;}");
+      } else if (styleObject == styles.flex) {
+        style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
+      } else if (styleObject == styles.sticky) {
+        style.insertRule(".sticky {position: sticky; top: 0;}");
+      } else if (styleObject == styles.dark) {
+        style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
+      } else if (styleObject == styles.background) {
+        style.insertRule(".background {background: var(--background);}");
+      } else if (styleObject == styles.light) {
+        style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
+      } else if (styleObject == styles.round) {
+        style.insertRule(".round {border-radius: 8px;}");
+      } else if (styleObject == styles.blue) {
+        style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
+      } else if (styleObject == styles.pink) {
+        style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
+      } else if (styleObject == styles.purple) {
+        style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
+      } else if (styleObject == styles.border) {
+        style.insertRule(".border {border: 2px solid var(--black);}");
+      } else if (styleObject == styles.hoverPointer) {
+        style.insertRule(".hover-pointer:hover {cursor: pointer;}");
+      } else if (styleObject == styles.heavy) {
+        style.insertRule(".heavy {font-weight: 700; font-size: 16px; font-family: var(--subtitle)}");
+      } else if (styleObject == styles.large) {
+        style.insertRule(".large {font-size: 22px !important; text-transform: uppercase; font-family: var(--title);}");
+      } else if (styleObject == styles.hoverShadow) {
+        style.insertRule(".hover-shadow:hover {box-shadow: 0 4px 6px 2px var(--purple);}");
+      } else if (styleObject == styles.focus) {
+        style.insertRule(".focus:focus {position: relative; top: 6px; outline: none;}");
+      } else if (styleObject == styles.title) {
+        style.insertRule(".title {font-size: 36px; font-family: var(--title);}");
+      } else if (styleObject == styles.text) {
+        style.insertRule(".text {font-family: var(--paragraph);}");
+      } else {
+        console.log("Error with buying styles!");
+      }
+    }
+  }
+  displayStyles();
 }
 
 function calcCost(purchased, baseCost) {
@@ -370,23 +586,6 @@ function progressBars() {
     }, 1000)
   }
 }
-// Style Shop
-let style = document.getElementById('style').sheet;
-style.insertRule(".inline {display: inline-block;}");
-style.insertRule(".padding {padding: 10px;}");
-style.insertRule(".margin {margin: 10px;}");
-style.insertRule(".block {display: block;}");
-style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
-style.insertRule(".sticky {position: sticky; top: 0;}");
-style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
-style.insertRule(".background {background: var(--background);}");
-style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
-style.insertRule(".round {border-radius: 8px;}");
-style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
-style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
-style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
-style.insertRule(".border {border: 2px solid var(--black);}");
-style.insertRule(".hover-pointer:hover {cursor: pointer;}");
 
 // DOM Events
 $(document).ready(() => {
@@ -402,6 +601,7 @@ $(document).ready(() => {
     localStorage.setItem('click', JSON.stringify(click));
     localStorage.setItem('upgrades', JSON.stringify(upgrades));
     localStorage.setItem('powerups', JSON.stringify(powerups));
+    localStorage.setItem('styles', JSON.stringify(styles));
   })
   // Local Storage Clear Saves
   $('.clear').on('click', () => {
@@ -409,11 +609,15 @@ $(document).ready(() => {
   })
   // Menu Navigation
   $(".menu").children().eq(0).on('click', () => {
-    // Style Shop Purchases
+    $('.styles').toggle();
+    $('.powerups').hide();
+    $('.upgrades').hide();
+    displayStyles();
   })
   $(".menu").children().eq(1).on('click', () => {
     $('.upgrades').toggle();
     $('.powerups').hide();
+    $(".styles").hide();
     displayCosts();
     displayOwned();
     displayGain();
@@ -421,6 +625,7 @@ $(document).ready(() => {
   $(".menu").children().eq(2).on('click', () => {
     $('.powerups').toggle();
     $('.upgrades').hide();
+    $(".styles").hide();
     displayPowerups();
   })
   // Click Event Handler

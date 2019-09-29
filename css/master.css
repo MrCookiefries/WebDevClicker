@@ -9,6 +9,9 @@ html, body {
   background-position: center;
 }
 :root {
+  --title: 'Merienda', cursive;
+  --subtitle: 'Libre Baskerville', serif;
+  --paragraph: 'PT Sans Narrow', sans-serif;
   --white: hsla(0, 100%, 100%, 1);
   --black: hsla(0, 0%, 0%, 1);
   --blue: hsla(211, 72%, 62%, 1);

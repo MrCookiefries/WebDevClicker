@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>WebDev Clicker</title>
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Merienda|PT+Sans+Narrow&display=swap" rel="stylesheet">
     <link id="style" rel="stylesheet" href="./css/master.css" type="text/css">
   </head>
-  <body class="background">
+  <body class="background text">
     <header class="sticky dark">
-      <ul class="menu">
+      <ul class="menu heavy large">
         <li class="inline padding hover-pointer">Styles</li>
         <li class="hover-pointer inline padding">Upgrades</li>
         <li class="hover-pointer inline padding">Powerups</li>
@@ -16,87 +17,236 @@
     </header>
     <main>
       <section class="shop flex">
+        <section class="styles" style="display: none;">
+          <div class="s-inline round light margin padding">
+            <h2>Columns</h2>
+            <button onclick="buyUpgrade(styles.inline);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Aligns some items side by side when there enough space.</p>
+          </div>
+          <div class="s-padding round light margin padding">
+            <h2>Text Space</h2>
+            <button onclick="buyUpgrade(styles.padding);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds space around the text.</p>
+          </div>
+          <div class="s-margin round light margin padding">
+            <h2>Box Space</h2>
+            <button onclick="buyUpgrade(styles.margin);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds space between the groups of text.</p>
+          </div>
+          <div class="s-block round light margin padding">
+            <h2>New Line</h2>
+            <button onclick="buyUpgrade(styles.block);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Moves some items down onto their own line.</p>
+          </div>
+          <div class="s-flex round light margin padding">
+            <h2>Center</h2>
+            <button onclick="buyUpgrade(styles.flex);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Aligns content to the center of the screen.</p>
+          </div>
+          <div class="s-sticky round light margin padding">
+            <h2>Stick</h2>
+            <button onclick="buyUpgrade(styles.sticky);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Makes the top menu stay visible by sticking to the screen.</p>
+          </div>
+          <div class="s-dark round light margin padding">
+            <h2>Dark</h2>
+            <button onclick="buyUpgrade(styles.dark);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds a dark theme to the top menu.</p>
+          </div>
+          <div class="s-background round light margin padding">
+            <h2>Background</h2>
+            <button onclick="buyUpgrade(styles.background);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds a colorful background to the page.</p>
+          </div>
+          <div class="s-light round light margin padding">
+            <h2>Light</h2>
+            <button onclick="buyUpgrade(styles.light);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds a background to items in the shop.</p>
+          </div>
+          <div class="s-round round light margin padding">
+            <h2>Smooth Corners</h2>
+            <button onclick="buyUpgrade(styles.round);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Rounds the hard corners to look more smooth.</p>
+          </div>
+          <div class="s-blue round light margin padding">
+            <h2>Blue</h2>
+            <button onclick="buyUpgrade(styles.blue);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds the color blue to some buttons.</p>
+          </div>
+          <div class="s-pink round light margin padding">
+            <h2>Pink</h2>
+            <button onclick="buyUpgrade(styles.pink);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds the color pink to some buttons.</p>
+          </div>
+          <div class="s-purple round light margin padding">
+            <h2>Purple</h2>
+            <button onclick="buyUpgrade(styles.purple);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds the color purple to some buttons.</p>
+          </div>
+          <div class="s-border round light margin padding">
+            <h2>Outline</h2>
+            <button onclick="buyUpgrade(styles.border);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds lines that border the buttons.</p>
+          </div>
+          <div class="s-hover-pointer round light margin padding">
+            <h2>Pointer</h2>
+            <button onclick="buyUpgrade(styles.hoverPointer);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds a hover effect to the cursor making it different when over a clickable item.</p>
+          </div>
+          <div class="s-heavy round light margin padding">
+            <h2>Bolder</h2>
+            <button onclick="buyUpgrade(styles.heavy);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Makes some text appear thicker making it easier to read along with adding a new font.</p>
+          </div>
+          <div class="s-large round light margin padding">
+            <h2>Large Text</h2>
+            <button onclick="buyUpgrade(styles.large);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Makes some of the text in a larger size, capitlizes it along with giving it a different font.</p>
+          </div>
+          <div class="s-hover-shadow round light margin padding">
+            <h2>Shadow</h2>
+            <button onclick="buyUpgrade(styles.hoverShadow);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Adds a hover effect to buttons that casts a shadow below it.</p>
+          </div>
+          <div class="s-focus round light margin padding">
+            <h2>Offset</h2>
+            <button onclick="buyUpgrade(styles.focus);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Moves a button downwards when it is on focus or clicked.</p>
+          </div>
+          <div class="s-title round light margin padding">
+            <h2>Title</h2>
+            <button onclick="buyUpgrade(styles.title);" class="s-title focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Makes the main text larger with a fancy font.</p>
+          </div>
+          <div class="s-text round light margin padding">
+            <h2>Font</h2>
+            <button onclick="buyUpgrade(styles.text);" class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button">Purchase</button>
+            <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
+            <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
+            <p class="inline padding"><b>Description: </b>Gives the rest of the text a brand new font.</p>
+          </div>
+        </section>
         <section class="upgrades" style="display: none;">
           <div class="round light scavenger margin padding">
             <h2>Scavenger</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.scavenger);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.scavenger);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light miner padding margin">
             <h2>Miner</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.miner);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.miner);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin researcher padding">
             <h2>Researcher</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.researcher);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.researcher);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin farmer padding">
             <h2>Farmer</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.farmer);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.farmer);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin worker padding">
             <h2>Worker</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.worker);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.worker);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin learner padding">
             <h2>Learner</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.learner);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.learner);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin designer padding">
             <h2>Designer</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.designer);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.designer);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin copier padding">
             <h2>Copier</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.copier);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.copier);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin developer padding">
             <h2>Developer</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.developer);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.developer);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin factory padding">
             <h2>Factory</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.factory);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.factory);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin hacker padding">
             <h2>Hacker</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.hacker);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.hacker);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
           </div>
           <div class="round light margin duplicator padding">
             <h2>Duplicator</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.duplicator);">Buy 1</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" class="buy" onclick="buyUpgrade(upgrades.duplicator);">Buy 1</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Owned: </b><span class="owned"></span></p>
             <p class="inline padding"><b>Gain (XP/PS): </b><span class="gain"></span></p>
@@ -105,44 +255,44 @@
         <section class="powerups" style="display: none;">
           <div class="round light margin clicker padding">
             <h2>Clicker</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.clicker);">Purchase</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.clicker);">Purchase</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Level: </b><span class="level"></span></p>
             <p class="inline padding"><b>Gain (Click Value): </b>+<span class="gain"></span></p>
           </div>
           <div class="round light margin double-click padding">
             <h2>Double Click</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.doubleClick);">Purchase</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.doubleClick);">Purchase</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
             <p class="inline padding"><b>Gain: </b><span class="gain"></span></p>
             <p class="inline padding"><b>Duration: </b><span class="duration"></span></p>
             <progress class="block margin" value="0" max="300000"></progress>
             <br>
-            <button class="hover-pointer border pink margin round padding" type="button" name="use" onclick="usePowerup(powerups.doubleClick);">Activate</button>
+            <button class="focus hover-shadow heavy hover-pointer border pink margin round padding" type="button" name="use" onclick="usePowerup(powerups.doubleClick);">Activate</button>
           </div>
           <div class="round light margin double-xp padding">
             <h2>Double XP</h2>
-            <button class="hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.doubleXp);">Purchase</button>
+            <button class="focus hover-shadow heavy hover-pointer border blue round padding block margin" type="button" name="buy" onclick="buyPowerup(powerups.doubleXp);">Purchase</button>
             <p class="inline padding"><b>Cost: </b><span class="cost"></span></p>
             <p class="inline padding"><b>Purchased: </b><span class="purchased"></span></p>
             <p class="inline padding"><b>Gain: </b><span class="gain"></span></p>
             <p class="inline padding"><b>Duration: </b><span class="duration"></span></p>
             <progress class="block margin" value="0" max="180000"></progress>
             <br>
-            <button class="hover-pointer border pink round padding margin" type="button" name="use" onclick="usePowerup(powerups.doubleXp);">Activate</button>
+            <button class="focus hover-shadow heavy hover-pointer border pink round padding margin" type="button" name="use" onclick="usePowerup(powerups.doubleXp);">Activate</button>
           </div>
         </section>
       </section>
       <section class="margin flex">
-        <h1 class="padding">XP: <span class="xp">0</span></h1>
-        <button type="button" class="hover-pointer border purple padding round click block margin">Click Me!</button>
+        <h1 class="title padding">XP: <span class="xp">0</span></h1>
+        <button type="button" class="focus hover-shadow heavy hover-pointer border purple padding round click block margin">Click Me!</button>
       </section>
     </main>
     <footer class="flex">
       <section class="margin">
-        <button type="button" class="hover-pointer border round padding margin save inline">Save</button>
-        <button type="button" class="hover-pointer border round padding margin clear inline">Clear Save</button>
+        <button type="button" class="focus hover-shadow heavy hover-pointer border round padding margin save inline">Save</button>
+        <button type="button" class="focus hover-shadow heavy hover-pointer border round padding margin clear inline">Clear Save</button>
       </section>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
