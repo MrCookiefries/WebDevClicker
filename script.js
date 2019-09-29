@@ -373,60 +373,124 @@ function buyPowerup(powerup) {
 
 function buyStyle(styleObject) {
   let cost = getPrice(styleObject);
-  if (styleObject.purchased) {
+  if (cost > xp) {
+    return;
+  } else if (styleObject.purchased === true) {
     return;
   } else {
-    if (xp > cost) {
-      styleObject.purchased = true;
-      xp -= cost;
-      if (styleObject == styles.inline) {
-        style.insertRule(".inline {display: inline-block;}");
-      } else if (styleObject == styles.padding) {
-        style.insertRule(".padding {padding: 10px;}");
-      } else if (styleObject == styles.margin) {
-        style.insertRule(".margin {margin: 10px;}");
-      } else if (styleObject == styles.block) {
-        style.insertRule(".block {display: block;}");
-      } else if (styleObject == styles.flex) {
-        style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
-      } else if (styleObject == styles.sticky) {
-        style.insertRule(".sticky {position: sticky; top: 0;}");
-      } else if (styleObject == styles.dark) {
-        style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
-      } else if (styleObject == styles.background) {
-        style.insertRule(".background {background: var(--background);}");
-      } else if (styleObject == styles.light) {
-        style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
-      } else if (styleObject == styles.round) {
-        style.insertRule(".round {border-radius: 8px;}");
-      } else if (styleObject == styles.blue) {
-        style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
-      } else if (styleObject == styles.pink) {
-        style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
-      } else if (styleObject == styles.purple) {
-        style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
-      } else if (styleObject == styles.border) {
-        style.insertRule(".border {border: 2px solid var(--black);}");
-      } else if (styleObject == styles.hoverPointer) {
-        style.insertRule(".hover-pointer:hover {cursor: pointer;}");
-      } else if (styleObject == styles.heavy) {
-        style.insertRule(".heavy {font-weight: 700; font-size: 16px; font-family: var(--subtitle)}");
-      } else if (styleObject == styles.large) {
-        style.insertRule(".large {font-size: 22px !important; text-transform: uppercase; font-family: var(--title);}");
-      } else if (styleObject == styles.hoverShadow) {
-        style.insertRule(".hover-shadow:hover {box-shadow: 0 4px 6px 2px var(--purple);}");
-      } else if (styleObject == styles.focus) {
-        style.insertRule(".focus:focus {position: relative; top: 6px; outline: none;}");
-      } else if (styleObject == styles.title) {
-        style.insertRule(".title {font-size: 36px; font-family: var(--title);}");
-      } else if (styleObject == styles.text) {
-        style.insertRule(".text {font-family: var(--paragraph);}");
-      } else {
-        console.log("Error with buying styles!");
-      }
+    xp -= cost;
+    styleObject.purchased = true;
+    if (styleObject === styles.inline) {
+      style.insertRule(".inline {display: inline-block;}");
+    } else if (styleObject === styles.padding) {
+      style.insertRule(".padding {padding: 10px;}");
+    } else if (styleObject === styles.margin) {
+      style.insertRule(".margin {margin: 10px;}");
+    } else if (styleObject === styles.block) {
+      style.insertRule(".block {display: block;}");
+    } else if (styleObject === styles.flex) {
+      style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
+    } else if (styleObject === styles.sticky) {
+      style.insertRule(".sticky {position: sticky; top: 0;}");
+    } else if (styleObject === styles.dark) {
+      style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
+    } else if (styleObject === styles.background) {
+      style.insertRule(".background {background: var(--background);}");
+    } else if (styleObject === styles.light) {
+      style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
+    } else if (styleObject === styles.round) {
+      style.insertRule(".round {border-radius: 8px;}");
+    } else if (styleObject === styles.blue) {
+      style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
+    } else if (styleObject === styles.pink) {
+      style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
+    } else if (styleObject === styles.purple) {
+      style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
+    } else if (styleObject === styles.border) {
+      style.insertRule(".border {border: 2px solid var(--black);}");
+    } else if (styleObject === styles.hoverPointer) {
+      style.insertRule(".hover-pointer:hover {cursor: pointer;}");
+    } else if (styleObject === styles.heavy) {
+      style.insertRule(".heavy {font-weight: 700; font-size: 16px; font-family: var(--subtitle)}");
+    } else if (styleObject === styles.large) {
+      style.insertRule(".large {font-size: 22px !important; text-transform: uppercase; font-family: var(--title);}");
+    } else if (styleObject === styles.hoverShadow) {
+      style.insertRule(".hover-shadow:hover {box-shadow: 0 4px 6px 2px var(--purple);}");
+    } else if (styleObject === styles.focus) {
+      style.insertRule(".focus:focus {position: relative; top: 6px; outline: none;}");
+    } else if (styleObject === styles.title) {
+      style.insertRule(".title {font-size: 36px; font-family: var(--title);}");
+    } else if (styleObject === styles.text) {
+      style.insertRule(".text {font-family: var(--paragraph);}");
+    } else {
+      console.log("Error with buying styles!");
     }
   }
   displayStyles();
+}
+
+if (styles.inline.purchased) {
+  style.insertRule(".inline {display: inline-block;}");
+}
+if (styles.padding.purchased) {
+  style.insertRule(".padding {padding: 10px;}");
+}
+if (styles.margin.purchased) {
+  style.insertRule(".margin {margin: 10px;}");
+}
+if (styles.block.purchased) {
+  style.insertRule(".block {display: block;}");
+}
+if (styles.flex.purchased) {
+  style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
+}
+if (styles.sticky.purchased) {
+  style.insertRule(".sticky {position: sticky; top: 0;}");
+}
+if (styles.dark.purchased) {
+  style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
+}
+if (styles.background.purchased) {
+  style.insertRule(".background {background: var(--background);}");
+}
+if (styles.light.purchased) {
+  style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
+}
+if (styles.round.purchased) {
+  style.insertRule(".round {border-radius: 8px;}");
+}
+if (styles.blue.purchased) {
+  style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
+}
+if (styles.pink.purchased) {
+  style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
+}
+if (styles.purple.purchased) {
+  style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
+}
+if (styles.border.purchased) {
+  style.insertRule(".border {border: 2px solid var(--black);}");
+}
+if (styles.hoverPointer.purchased) {
+  style.insertRule(".hover-pointer:hover {cursor: pointer;}");
+}
+if (styles.heavy.purchased) {
+  style.insertRule(".heavy {font-weight: 700; font-size: 16px; font-family: var(--subtitle)}");
+}
+if (styles.large.purchased) {
+  style.insertRule(".large {font-size: 22px !important; text-transform: uppercase; font-family: var(--title);}");
+}
+if (styles.hoverShadow.purchased) {
+  style.insertRule(".hover-shadow:hover {box-shadow: 0 4px 6px 2px var(--purple);}");
+}
+if (styles.focus.purchased) {
+  style.insertRule(".focus:focus {position: relative; top: 6px; outline: none;}");
+}
+if (styles.title.purchased) {
+  style.insertRule(".title {font-size: 36px; font-family: var(--title);}");
+}
+if (styles.text.purchased) {
+  style.insertRule(".text {font-family: var(--paragraph);}");
 }
 
 function calcCost(purchased, baseCost) {
