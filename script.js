@@ -1,232 +1,202 @@
 // Game Data
 let storage = window.localStorage;
 let style = document.getElementById('style').sheet;
-let xp;
-if (storage.xp !== undefined) {
-  xp = JSON.parse(storage.getItem('xp'));
-} else {
-  xp = 0;
-}
-let xpPs;
-if (storage.xpPs !== undefined) {
-  xpPs = JSON.parse(storage.getItem('xpPs'));
-} else {
-  xpPs = 0;
-}
-let click;
-if (storage.click !== undefined) {
-  click = JSON.parse(storage.getItem('click'));
-} else {
-  click = 1;
-}
-let upgrades;
-if (localStorage.upgrades !== undefined) {
-  upgrades = JSON.parse(localStorage.getItem('upgrades'));
-} else {
-  upgrades = {
-    scavenger: {
-      cost: 30,
-      gain: 1,
-      bought: 0
-    },
-    miner: {
-      cost: 360,
-      gain: 5,
-      bought: 0
-    },
-    researcher: {
-      cost: 4320,
-      gain: 25,
-      bought: 0
-    },
-    farmer: {
-      cost: 51840,
-      gain: 125,
-      bought: 0
-    },
-    worker: {
-      cost: 622080,
-      gain: 625,
-      bought: 0
-    },
-    learner: {
-      cost: 7464000,
-      gain: 3125,
-      bought: 0
-    },
-    designer: {
-      cost: 89579000,
-      gain: 15625,
-      bought: 0
-    },
-    copier: {
-      cost: 1074000000,
-      gain: 78125,
-      bought: 0
-    },
-    developer: {
-      cost: 12899000000,
-      gain: 390625,
-      bought: 0
-    },
-    factory: {
-      cost: 154793000000,
-      gain: 1953000,
-      bought: 0
-    },
-    hacker: {
-      cost: 1857000000000,
-      gain: 9765000,
-      bought: 0
-    },
-    duplicator: {
-      cost: 22290000000000,
-      gain: 48828000,
-      bought: 0
-    }
+let xp = (storage.xp !== undefined) ? JSON.parse(storage.getItem('xp')) : 0;
+let xpPs = (storage.xpPs !== undefined) ? JSON.parse(storage.getItem('xpPs')) : 0;
+let click = (storage.click !== undefined) ? JSON.parse(storage.getItem('click')) : 1;
+let upgrades = (localStorage.upgrades !== undefined) ? JSON.parse(localStorage.getItem('upgrades')) : {
+  scavenger: {
+    cost: 30,
+    gain: 1,
+    bought: 0
+  },
+  miner: {
+    cost: 360,
+    gain: 5,
+    bought: 0
+  },
+  researcher: {
+    cost: 4320,
+    gain: 25,
+    bought: 0
+  },
+  farmer: {
+    cost: 51840,
+    gain: 125,
+    bought: 0
+  },
+  worker: {
+    cost: 622080,
+    gain: 625,
+    bought: 0
+  },
+  learner: {
+    cost: 7464000,
+    gain: 3125,
+    bought: 0
+  },
+  designer: {
+    cost: 89579000,
+    gain: 15625,
+    bought: 0
+  },
+  copier: {
+    cost: 1074000000,
+    gain: 78125,
+    bought: 0
+  },
+  developer: {
+    cost: 12899000000,
+    gain: 390625,
+    bought: 0
+  },
+  factory: {
+    cost: 154793000000,
+    gain: 1953000,
+    bought: 0
+  },
+  hacker: {
+    cost: 1857000000000,
+    gain: 9765000,
+    bought: 0
+  },
+  duplicator: {
+    cost: 22290000000000,
+    gain: 48828000,
+    bought: 0
+  }
+};
+let powerups = (localStorage.powerups !== undefined) ? JSON.parse(localStorage.getItem('powerups')) : {
+  clicker: {
+    cost: 500,
+    gain: 5,
+    bought: 0,
+    purchased: false
+  },
+  doubleClick: {
+    cost: 10000,
+    gain: "Click XP x2",
+    canUse: false,
+    duration: 10000,
+    recharge: 300000,
+    bought: 0,
+    purchased: false
+  },
+  doubleXp: {
+    cost: 1000000,
+    gain: "XP Per Second x2",
+    duration: 5000,
+    canUse: false,
+    bought: 0,
+    purchased: false,
+    recharge: 180000
   }
 }
-let powerups;
-if (localStorage.powerups !== undefined) {
-  powerups = JSON.parse(localStorage.getItem('powerups'));
-} else {
-  powerups = {
-    clicker: {
-      cost: 500,
-      gain: 5,
-      bought: 0,
-      purchased: false
-    },
-    doubleClick: {
-      cost: 10000,
-      gain: "Click XP x2",
-      canUse: false,
-      duration: 10000,
-      recharge: 300000,
-      bought: 0,
-      purchased: false
-    },
-    doubleXp: {
-      cost: 1000000,
-      gain: "XP Per Second x2",
-      duration: 5000,
-      canUse: false,
-      bought: 0,
-      purchased: false,
-      recharge: 180000
-    }
-  }
-}
-let styles;
-if (localStorage.styles !== undefined) {
-  styles = JSON.parse(localStorage.getItem('styles'));
-} else {
-  styles = {
-    inline: {
-      cost: 10,
-      bought: 0,
-      purchased: false
-    },
-    padding: {
-      cost: 50,
-      bought: 0,
-      purchased: false
-    },
-    margin: {
-      cost: 100,
-      bought: 0,
-      purchased: false
-    },
-    block: {
-      cost: 500,
-      bought: 0,
-      purchased: false
-    },
-    flex: {
-      cost: 1000,
-      bought: 0,
-      purchased: false
-    },
-    sticky: {
-      cost: 5000,
-      bought: 0,
-      purchased: false
-    },
-    dark: {
-      cost: 10000,
-      bought: 0,
-      purchased: false
-    },
-    background: {
-      cost: 50000,
-      bought: 0,
-      purchased: false
-    },
-    light: {
-      cost: 100000,
-      bought: 0,
-      purchased: false
-    },
-    round: {
-      cost: 500000,
-      bought: 0,
-      purchased: false
-    },
-    blue: {
-      cost: 1000000,
-      bought: 0,
-      purchased: false
-    },
-    pink: {
-      cost: 5000000,
-      bought: 0,
-      purchased: false
-    },
-    purple: {
-      cost: 10000000,
-      bought: 0,
-      purchased: false
-    },
-    border: {
-      cost: 50000000,
-      bought: 0,
-      purchased: false
-    },
-    hoverPointer: {
-      cost: 100000000,
-      bought: 0,
-      purchased: false
-    },
-    heavy: {
-      cost: 500000000,
-      bought: 0,
-      purchased: false
-    },
-    large: {
-      cost: 1000000000,
-      bought: 0,
-      purchased: false
-    },
-    hoverShadow: {
-      cost: 5000000000,
-      bought: 0,
-      purchased: false
-    },
-    focus: {
-      cost: 10000000000,
-      bought: 0,
-      purchased: false
-    },
-    title: {
-      cost: 50000000000,
-      bought: 0,
-      purchased: false
-    },
-    text: {
-      cost: 100000000000,
-      bought: 0,
-      purchased: false
-    }
+let styles = (localStorage.styles !== undefined) ? JSON.parse(localStorage.getItem('styles')) : {
+  inline: {
+    cost: 10,
+    bought: 0,
+    purchased: false
+  },
+  padding: {
+    cost: 50,
+    bought: 0,
+    purchased: false
+  },
+  margin: {
+    cost: 100,
+    bought: 0,
+    purchased: false
+  },
+  block: {
+    cost: 500,
+    bought: 0,
+    purchased: false
+  },
+  flex: {
+    cost: 1000,
+    bought: 0,
+    purchased: false
+  },
+  sticky: {
+    cost: 5000,
+    bought: 0,
+    purchased: false
+  },
+  dark: {
+    cost: 10000,
+    bought: 0,
+    purchased: false
+  },
+  background: {
+    cost: 50000,
+    bought: 0,
+    purchased: false
+  },
+  light: {
+    cost: 100000,
+    bought: 0,
+    purchased: false
+  },
+  round: {
+    cost: 500000,
+    bought: 0,
+    purchased: false
+  },
+  blue: {
+    cost: 1000000,
+    bought: 0,
+    purchased: false
+  },
+  pink: {
+    cost: 5000000,
+    bought: 0,
+    purchased: false
+  },
+  purple: {
+    cost: 10000000,
+    bought: 0,
+    purchased: false
+  },
+  border: {
+    cost: 50000000,
+    bought: 0,
+    purchased: false
+  },
+  hoverPointer: {
+    cost: 100000000,
+    bought: 0,
+    purchased: false
+  },
+  heavy: {
+    cost: 500000000,
+    bought: 0,
+    purchased: false
+  },
+  large: {
+    cost: 1000000000,
+    bought: 0,
+    purchased: false
+  },
+  hoverShadow: {
+    cost: 5000000000,
+    bought: 0,
+    purchased: false
+  },
+  focus: {
+    cost: 10000000000,
+    bought: 0,
+    purchased: false
+  },
+  title: {
+    cost: 50000000000,
+    bought: 0,
+    purchased: false
+  },
+  text: {
+    cost: 100000000000,
+    bought: 0,
+    purchased: false
   }
 }
 
@@ -342,93 +312,86 @@ function buyUpgrade(upgrade) {
   let cost = getPrice(upgrade);
   if (cost > xp) {
     return;
-  } else {
-    xp -= cost;
-    upgrade.bought++;
-    xpPs += upgrade.gain;
-    displayCosts();
-    displayOwned();
   }
+  xp -= cost;
+  upgrade.bought++;
+  xpPs += upgrade.gain;
+  displayCosts();
+  displayOwned();
 }
 
 function buyPowerup(powerup) {
   let cost = getPrice(powerup);
-  if (cost > xp) {
+  if (cost > xp || powerup.purchased) {
     return;
-  } else if (powerup.purchased === true) {
-    return;
-  } else {
-    xp -= cost;
-    if (powerup === powerups.clicker) {
-      powerup.bought++;
-      click += powerup.gain;
-      powerup.gain++;
-    } else {
-      powerup.purchased = true;
-      progressBars();
-    }
-    displayPowerups();
   }
+  xp -= cost;
+  if (powerup === powerups.clicker) {
+    powerup.bought++;
+    click += powerup.gain;
+    powerup.gain++;
+  } else {
+    powerup.purchased = true;
+    progressBars();
+  }
+  displayPowerups();
 }
 
 function buyStyle(styleObject) {
   let cost = getPrice(styleObject);
-  if (cost > xp) {
+  if (cost > xp || styleObject.purchased) {
     return;
-  } else if (styleObject.purchased === true) {
-    return;
+  }
+  xp -= cost;
+  styleObject.purchased = true;
+  if (styleObject === styles.inline) {
+    style.insertRule(".inline {display: inline-block;}");
+  } else if (styleObject === styles.padding) {
+    style.insertRule(".padding {padding: 10px;}");
+  } else if (styleObject === styles.margin) {
+    style.insertRule(".margin {margin: 10px;}");
+  } else if (styleObject === styles.block) {
+    style.insertRule(".block {display: block;}");
+  } else if (styleObject === styles.flex) {
+    style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
+  } else if (styleObject === styles.sticky) {
+    style.insertRule(".sticky {position: sticky; top: 0;}");
+  } else if (styleObject === styles.dark) {
+    style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
+  } else if (styleObject === styles.background) {
+    style.insertRule(".background {background: var(--background);}");
+  } else if (styleObject === styles.light) {
+    style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
+  } else if (styleObject === styles.round) {
+    style.insertRule(".round {border-radius: 8px;}");
+  } else if (styleObject === styles.blue) {
+    style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
+  } else if (styleObject === styles.pink) {
+    style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
+  } else if (styleObject === styles.purple) {
+    style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
+  } else if (styleObject === styles.border) {
+    style.insertRule(".border {border: 2px solid var(--black);}");
+  } else if (styleObject === styles.hoverPointer) {
+    style.insertRule(".hover-pointer:hover {cursor: pointer;}");
+  } else if (styleObject === styles.heavy) {
+    style.insertRule(".heavy {font-weight: 700; font-size: 16px; font-family: var(--subtitle)}");
+  } else if (styleObject === styles.large) {
+    style.insertRule(".large {font-size: 22px !important; text-transform: uppercase; font-family: var(--title);}");
+  } else if (styleObject === styles.hoverShadow) {
+    style.insertRule(".hover-shadow:hover {box-shadow: 0 4px 6px 2px var(--purple);}");
+  } else if (styleObject === styles.focus) {
+    style.insertRule(".focus:focus {position: relative; top: 6px; outline: none;}");
+  } else if (styleObject === styles.title) {
+    style.insertRule(".title {font-size: 36px; font-family: var(--title);}");
+  } else if (styleObject === styles.text) {
+    style.insertRule(".text {font-family: var(--paragraph);}");
   } else {
-    xp -= cost;
-    styleObject.purchased = true;
-    if (styleObject === styles.inline) {
-      style.insertRule(".inline {display: inline-block;}");
-    } else if (styleObject === styles.padding) {
-      style.insertRule(".padding {padding: 10px;}");
-    } else if (styleObject === styles.margin) {
-      style.insertRule(".margin {margin: 10px;}");
-    } else if (styleObject === styles.block) {
-      style.insertRule(".block {display: block;}");
-    } else if (styleObject === styles.flex) {
-      style.insertRule(".flex {display: flex; flex-direction: column; align-items: center; justify-content: center;}");
-    } else if (styleObject === styles.sticky) {
-      style.insertRule(".sticky {position: sticky; top: 0;}");
-    } else if (styleObject === styles.dark) {
-      style.insertRule(".dark {background-color: hsla(0, 0%, 0%, 0.75); color: var(--white);}");
-    } else if (styleObject === styles.background) {
-      style.insertRule(".background {background: var(--background);}");
-    } else if (styleObject === styles.light) {
-      style.insertRule(".light {background-color: hsla(0, 0%, 100%, 0.75); color: var(--black);}");
-    } else if (styleObject === styles.round) {
-      style.insertRule(".round {border-radius: 8px;}");
-    } else if (styleObject === styles.blue) {
-      style.insertRule(".blue {background-color: var(--blue); color: var(--black);}");
-    } else if (styleObject === styles.pink) {
-      style.insertRule(".pink {background-color: var(--pink); color: var(--black);}");
-    } else if (styleObject === styles.purple) {
-      style.insertRule(".purple {background-color: var(--purple); color: var(--black);}");
-    } else if (styleObject === styles.border) {
-      style.insertRule(".border {border: 2px solid var(--black);}");
-    } else if (styleObject === styles.hoverPointer) {
-      style.insertRule(".hover-pointer:hover {cursor: pointer;}");
-    } else if (styleObject === styles.heavy) {
-      style.insertRule(".heavy {font-weight: 700; font-size: 16px; font-family: var(--subtitle)}");
-    } else if (styleObject === styles.large) {
-      style.insertRule(".large {font-size: 22px !important; text-transform: uppercase; font-family: var(--title);}");
-    } else if (styleObject === styles.hoverShadow) {
-      style.insertRule(".hover-shadow:hover {box-shadow: 0 4px 6px 2px var(--purple);}");
-    } else if (styleObject === styles.focus) {
-      style.insertRule(".focus:focus {position: relative; top: 6px; outline: none;}");
-    } else if (styleObject === styles.title) {
-      style.insertRule(".title {font-size: 36px; font-family: var(--title);}");
-    } else if (styleObject === styles.text) {
-      style.insertRule(".text {font-family: var(--paragraph);}");
-    } else {
-      console.log("Error with buying styles!");
-    }
+    console.log("Error with buying styles!");
   }
   displayStyles();
 }
-
+// Local Storage Update Styles
 if (styles.inline.purchased) {
   style.insertRule(".inline {display: inline-block;}");
 }
@@ -537,11 +500,7 @@ function roundPrice(num) {
   num = num.toString();
   switch (num.length) {
     case 1:
-      return num
-      break;
     case 2:
-      return num
-      break;
     case 3:
       return num
       break;
@@ -600,30 +559,29 @@ function roundPrice(num) {
 function usePowerup(powerup) {
   let origClick = click;
   let origxpPs = xpPs;
-  if (powerup.canUse == false) {
+  if (!powerup.canUse) {
     return;
-  } else {
-    powerup.canUse = false;
-    if (powerup == powerups.doubleClick) {
-      $(".double-click progress").val(0);
-      click = click * 2;
-    } else if (powerup == powerups.doubleXp) {
-      $(".double-xp progress").val(0);
-      xpPs = xpPs * 2;
-    }
-    setInterval(() => {
-      if (powerup == powerups.doubleClick) {
-        click = origClick;
-      } else if (powerup == powerups.doubleXp) {
-        xpPs = origxpPs;
-      }
-      progressBars();
-    }, powerup.duration)
   }
+  powerup.canUse = false;
+  if (powerup == powerups.doubleClick) {
+    $(".double-click progress").val(0);
+    click = click * 2;
+  } else if (powerup == powerups.doubleXp) {
+    $(".double-xp progress").val(0);
+    xpPs = xpPs * 2;
+  }
+  setInterval(() => {
+    if (powerup == powerups.doubleClick) {
+      click = origClick;
+    } else if (powerup == powerups.doubleXp) {
+      xpPs = origxpPs;
+    }
+    progressBars();
+  }, powerup.duration)
 }
 
 function progressBars() {
-  if (powerups.doubleClick.purchased === true && powerups.doubleClick.canUse === false) {
+  if (powerups.doubleClick.purchased && !powerups.doubleClick.canUse) {
     let dbClickVal = $('.double-click progress').val();
     let dbClickId = setInterval(() => {
       dbClickVal = $('.double-click progress').val();
@@ -636,7 +594,7 @@ function progressBars() {
       }
     }, 1000)
   }
-  if (powerups.doubleXp.purchased === true && powerups.doubleXp.canUse === false) {
+  if (powerups.doubleXp.purchased && !powerups.doubleXp.canUse) {
     let dbXpVal = $('.double-xp progress').val();
     let dbXpId = setInterval(() => {
       dbXpVal = $('.double-xp progress').val();
